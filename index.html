@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Calculator</title>
     <link rel="stylesheet" href="styles.css">
+    <audio src="/Assets/notification-beep-229154.mp3" id="click-sound"></audio>
 </head>
 <body>
     <header>
@@ -12,30 +13,31 @@
     </header>
     <main>
         <div class="calculator-body">
-            <div id="screen" class="screen"></div>
-            <div class="button-container">
-                <button>AC</button>
-                <button>+/-</button>
-                <button>%</button>
-                <button>÷</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>X</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>-</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>+</button>
-                <button>0</button>
-                <button>^</button>
-                <button>.</button>
-                <button>=</button>
+            <div  class="screen">
+                <input type="text" readonly name="screen" id="screen">
             </div>
-            
+            <div class="button-container">
+                <button class="input-button" id="ac">AC</button>
+                <button class="input-button" id="+/-">+/-</button>
+                <button class="input-button" id="%">%</button>
+                <button class="input-button" id="÷">÷</button>
+                <button class="input-button" id="7">7</button>
+                <button class="input-button" id="8">8</button>
+                <button class="input-button" id="9">9</button>
+                <button class="input-button" id="X">X</button>
+                <button class="input-button" id="4">4</button>
+                <button class="input-button" id="5">5</button>
+                <button class="input-button" id="6">6</button>
+                <button class="input-button" id="-">-</button>
+                <button class="input-button" id="1">1</button>
+                <button class="input-button" id="2">2</button>
+                <button class="input-button" id="3">3</button>
+                <button class="input-button" id="+">+</button>
+                <button class="input-button" id="0">0</button>
+                <button class="input-button" id="^">^</button>
+                <button class="input-button" id=".">.</button>
+                <button value="submit" class="input-button" id="=">=</button>
+            </div>
         </div>
     </main>
     <script src="app.js"></script>
