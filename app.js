@@ -24,10 +24,10 @@ const equal = document.getElementById("=");
 const allButtons = [clear,negative,percent,division,seven,eight,nine,multiplication,four,five,six,minus,one,two,three,plus,zero,exponent,decimal,equal]
 const numberButtons =[zero,one,two,three,four,five,six,seven,eight,nine];
 const numberValues=[0,1,2,3,4,5,6,7,8,9]
-const oppButtons = [division,multiplication,minus,plus,exponent];
-const oppText=["/","X","-","+","^"]
+const oppButtons = [division,multiplication,minus,plus,exponent,percent];
+const oppText=["/","X","-","+","^","%"]
 const appendOpps = [negative,percent,decimal]
-const appendText = ["-",'%',"."]
+const appendText = ["-","."]
 
 //We need access to the text on the screen and we need 5 varibles to kinda trade hands.
 const screen = document.getElementById("screen");
@@ -42,19 +42,22 @@ var ding = document.getElementById("equals-sound");
 var icon = document.getElementById("icon");
 
 //listens for any operators the require appending a string("To later be parsed") to a number value.
-function listenForAppendOpperators(){
-    for(let i =0;i<appendOpps.length;i++){
-        appendOpps[i].addEventListener("click",()=>{
-            if(i==0){
-                currentValue="-"+currentValue;
-            }else if(i==1){
-                currentValue+="%";
-            }else if(i==2){
-                currentValue+=".";
+function listenForAppendOpperators() {
+    for (let i = 0; i < appendOpps.length; i++) {
+        appendOpps[i].addEventListener("click", () => {
+            if (i == 0 && !currentValue.includes("-")) {
+                currentValue = "-" + currentValue;
+            } else if (i == 2 && !currentValue.includes(".")) {
+                currentValue += ".";
             }
             screen.value = currentValue;
-        })
+        });
     }
+}
+
+
+function solvePercentage(){
+
 }
 //listen for any operator button, loop through them and do some fancy shit! (IDK yet.)
 function listenForOpperation(){
@@ -63,8 +66,8 @@ function listenForOpperation(){
         if(currentValue!==''){
         firstValue=currentValue;
         opperation=oppText[i];
-        screen.value=''
-        currentValue=''
+        screen.value='';
+        currentValue='';
         }
     });
     }
@@ -75,8 +78,6 @@ function listenForClearScreen(){
         screen.value='';
         currentValue='';
         secondValue='';
-        thirdValue='';
-        fourthValue='';
     })
 }
 
@@ -98,10 +99,10 @@ function listenForEquals(){
             secondValue=currentValue;
             switch(opperation){
                 case "+":
-                    screen.value=parseInt(firstValue)+parseInt(secondValue);
+                    screen.value=parseFloat(firstValue)+parseFloat(secondValue);
                     break;
                 case "-":
-                    screen.value=parseInt(firstValue)-parseInt(secondValue);
+                    screen.value=parseFloat(firstValue)-parseFloat(secondValue);
                     break;
                 case 'X':
                         screen.value = parseFloat(firstValue) * parseFloat(secondValue);
@@ -112,6 +113,8 @@ function listenForEquals(){
                 case '^':
                         screen.value = Math.pow(parseFloat(firstValue), parseFloat(secondValue));
                         break;
+                case '%':
+                        screen.value = parseFloat(firstValue)%parseFloat(secondValue);
             }
             firstValue = screen.value;
             currentValue = '';
